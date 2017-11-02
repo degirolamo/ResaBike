@@ -4,7 +4,7 @@
         <thead>
         <tr>
             slt gros fdp
-            
+
             <th><?php trad('Date'); ?></th>
             <th><?php trad('Lastname'); ?></th>
             <th><?php trad('Firstname'); ?></th>
