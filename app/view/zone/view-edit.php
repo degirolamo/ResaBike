@@ -5,10 +5,25 @@
         <form class="col s12">
             <div class="row">
                 <div class="input-field col s12">
-
                     <input id="nom" type="text" class="validate" value="<?php echo $zoneEdited['nom']; ?>">
 
                     <label for="nom"><?php trad('Zone\'s name'); ?></label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="nom" type="text" class="validate" value="x">
+
+                    <label for="nom"><?php trad('Start station'); ?></label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="nom" type="text" class="validate" value="x">
+
+                    <label for="nom"><?php trad('final station'); ?></label>
                 </div>
             </div>
 
