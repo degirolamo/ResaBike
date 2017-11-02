@@ -21,31 +21,53 @@ class ControllerZone extends Controller
     public function add()
     {
         if (isset($_POST['submit'])) {
-            $this->model->addZone($_POST['nom']);
-            header("Location: /resabike/zone");
+            $lastInsertId = $this->model->addZone($_POST['nom']);
+            header('Location: /resabike/zone/edit?id='.$lastInsertId);
         }
         return $this->view->Render();
     }
 
     public function delete()
     {
+        $this->model->deleteStations($_GET['id']);
         $this->model->deleteZone($_GET['id']);
         header("Location: /resabike/zone");
     }
 
     public function edit()
     {
-        //zone edited
-
-        $zoneEdited = $this->model->editZone($_GET['id']);
-
-        $this->view->Set('zoneEdited', $zoneEdited);
-
-        if (isset($_POST['submit'])) {
-            $this->model->updateZone($zoneEdited['id'], $_POST['nom']);
+        if (isset($_POST['submitEdit'])) {
+            $this->model->updateZone($_GET['id'], $_POST['nom']);
             header("Location: /resabike/zone");
+            exit;
         }
 
+        //zone edited
+        $zoneEdited = $this->model->editZone($_GET['id']);
+        $this->view->Set('zoneEdited', $zoneEdited);
+
         return $this->view->Render();
+    }
+
+    public function addStation() {
+        $name = $_GET['name'];
+        $zone = $_GET['zone'];
+
+        if($this->model->addStation($name, $zone))
+            return 'Station ajoutée !';
+        return 'Cette station existe déjà';
+    }
+
+    public function addAllStations() {
+        $stations = explode(';', $_GET['stations']);
+        $messages = [];
+
+        foreach($stations as $station) {
+            if($this->model->addStation($station, $_GET['zone']))
+                array_push($messages, 'Station ajoutée !');
+            array_push($messages, 'Cette station existe déjà');;
+        }
+
+        return json_encode($messages);
     }
 }

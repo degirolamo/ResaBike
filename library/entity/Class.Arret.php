@@ -9,11 +9,11 @@
 		public function __construct(){
 			$this->conn=DbConnect::Get('Connection');
 		}
-		public function addArret($nom){
+		public function addArret($nom, $idZone){
 			$conn = $this->conn;
-			$sql="INSERT INTO arret(nom) VALUES (:nom)";
+			$sql="INSERT INTO arret(nom, idZone) VALUES (:nom, :idZone)";
 			$stat = $conn->prepare($sql);
-			$stat->bindParam(":nom",$nom);
+			$stat->bindParam(":nom",$nom);$stat->bindParam(":idZone",$idZone);
 			$stat->execute();
 		}
 		public function updateArret($id,$nom){
@@ -43,5 +43,12 @@
 			$stat->execute();
 			return $stat->fetch(PDO::FETCH_LAZY);
 		}
+        public function getArretsByName($name){
+            $conn = $this->conn;
+            $sql="SELECT * FROM arret WHERE nom LIKE '%$name%'";
+            $stat = $conn->prepare($sql);
+            $stat->execute();
+            return $stat->fetchAll(PDO::FETCH_ASSOC);
+        }
 	}
 ?>

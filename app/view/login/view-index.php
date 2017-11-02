@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/resabike/assets/css/login.css">
     <!--Import Google Icon Font-->
-    <link href="../../../assets/css/icon.css" rel="stylesheet">
+    <link href="/resabike/assets/css/icon.css" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="/resabike/assets/css/materialize.css"  media="screen,projection"/>
     <!--Let browser know website is optimized for mobile-->
@@ -35,7 +35,7 @@
 <!--Import jQuery before materialize.js-->
 <script src="/resabike/assets/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/resabike/assets/js/materialize.js"></script>
-<script type="text/javascript" src="/resabike/assets/js/login.js"></script>
+<script type="text/javascript" src="/resabike/assets/js/resabike.js"></script>
 </body>
 </div>
 </html>

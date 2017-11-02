@@ -2,18 +2,19 @@
 namespace ResaBike\App\Model;
 
 use ResaBike\Library\Mvc\Model;
-use ResaBike\Library\Database\DbConnect;
+use ResaBike\Library\Entity\Arret;
 
 class ModelIndex extends Model{
-    public function getCoucou(){
-        return 'coucou';
-    }
+    public function getStations($name) {
+        $arretManager = new Arret();
+        $stations = $arretManager->getArretsByName($name);
+        $tabStations = [];
 
-    public function getUser($id){
-        $db = DbConnect::Get();
-        //$stmt = 'select -----
-        $user = new User($stmt);
-        return $user;
+        foreach($stations as $station) {
+            array_push($tabStations, $station);
+        }
+
+        return $tabStations;
     }
 
 

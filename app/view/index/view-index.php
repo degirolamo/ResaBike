@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/resabike/assets/css/login.css">
     <!--Import Google Icon Font-->
-    <link href="../../../assets/css/icon.css" rel="stylesheet">
+    <link href="/resabike/assets/css/icon.css" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="/resabike/assets/css/materialize.css"  media="screen,projection"/>
     <!--Let browser know website is optimized for mobile-->
@@ -31,7 +31,7 @@
                 <div class="row smallRow">
                         <div class="col s12">
                                 <div class="input-field col s6">
-                                    <input type="text" id="ifrom" name="from" class="autocomplete autocompleteApi">
+                                    <input type="text" id="ifrom" name="from" class="autocomplete autocompleteDB">
                                     <label for="autocomplete-input"><?php trad('From'); ?></label>
                                 </div>
                         </div>
@@ -39,7 +39,7 @@
                 <div class="row smallRow">
                     <div class="col s12">
                             <div class="input-field col s6">
-                                <input type="text" id="idto" name="to" class="autocomplete autocompleteApi" required>
+                                <input type="text" id="idto" name="to" class="autocomplete " required>
                                 <label for="autocomplete-input"><?php trad('To'); ?></label>
                             </div>
                     </div>
@@ -65,7 +65,7 @@
 <!--Import jQuery before materialize.js-->
 <script src="/resabike/assets/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/resabike/assets/js/materialize.js"></script>
-<script type="text/javascript" src="/resabike/assets/js/login.js"></script>
+<script type="text/javascript" src="/resabike/assets/js/resabike.js"></script>
 </body>
 </div>
 </html>

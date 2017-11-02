@@ -11,6 +11,7 @@ namespace ResaBike\App\Model;
 
 use Resabike\Library\Entity\Role;
 use Resabike\Library\Entity\Zone;
+use Resabike\Library\Entity\Arret;
 
 class ModelZone
 {
@@ -24,6 +25,16 @@ class ModelZone
     public function deleteZone($id) {
         $zoneManager = new Zone();
         return $zoneManager->deleteZone($id);
+    }
+
+    public function deleteStations($id) {
+        $arretManager = new Arret();
+        $arrets = $arretManager->getAllArret();
+
+        foreach($arrets as $arret) {
+            if($arret['idZone'] == $id)
+                $arretManager->deleteArret($arret['id']);
+        }
     }
 
     public function addZone($nom) {
@@ -46,6 +57,27 @@ class ModelZone
         return $zoneManager->updateZone($id,$nom);
 
 
+    }
+
+    public function existsStation($name, $idZone) {
+        $arretManager = new Arret();
+        $stations = $arretManager->getAllArret();
+
+        foreach($stations as $station) {
+            if($name == $station['nom'] && $idZone == $station['idZone'])
+                return true;
+        }
+
+        return false;
+    }
+
+    public function addStation($name, $idZone) {
+        $arretManager = new Arret();
+        if(!$this->existsStation($name, $idZone)) {
+            $arretManager->addArret($name, $idZone);
+            return true;
+        }
+        return false;
     }
 
 

@@ -15,6 +15,7 @@
 			$stat = $conn->prepare($sql);
 			$stat->bindParam(":nom",$nom);
 			$stat->execute();
+			return $conn->lastInsertId();
 		}
 		public function updateZone($id,$nom){
 			$conn = $this->conn;

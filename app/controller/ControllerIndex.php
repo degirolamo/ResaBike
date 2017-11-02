@@ -1,12 +1,15 @@
 <?php
+
 namespace ResaBike\App\Controller;
 
 use ResaBike\Library\Mvc\Controller;
 
-class ControllerIndex extends Controller{
+class ControllerIndex extends Controller
+{
 
-    public function index(){
-        if(isset($_POST['submit'])) {
+    public function index()
+    {
+        if (isset($_POST['submit'])) {
             $_SESSION['date'] = $_POST['date'];
             $_SESSION['from'] = $_POST['from'];
             $_SESSION['to'] = $_POST['to'];
@@ -17,7 +20,14 @@ class ControllerIndex extends Controller{
         return $this->view->Render();
     }
 
-    public function search() {
+    public function getStations() {
+//        return $this->model->getStations($_GET['input']);
+        $arrets = $this->model->getStations('S');
+        return $arrets;
+    }
+
+    public function search()
+    {
         $date = $_SESSION['date'];
         $from = $_SESSION['from'];
         $to = $_SESSION['to'];
@@ -25,7 +35,7 @@ class ControllerIndex extends Controller{
         $this->view->Set('from', $from);
         $this->view->Set('to', $to);
 
-        if(isset($_POST['reserv'])) {
+        if (isset($_POST['reserv'])) {
 
             header('Location: /resabike/index/confirmReserv');
         }
@@ -33,9 +43,10 @@ class ControllerIndex extends Controller{
         return $this->view->Render();
     }
 
-    public function zones() {
+    public function zones()
+    {
 
-        if(isset($_POST['zones'])) {
+        if (isset($_POST['zones'])) {
 
             header('Location: /resabike/zone/showZonesSYSADMIN');
         }
@@ -45,31 +56,13 @@ class ControllerIndex extends Controller{
     }
 
 
+    public function confirmReserv()
+    {
 
-
-public function confirmReserv() {
-
-        header( "refresh:3;url=/resabike/index.php" );
+        header("refresh:3;url=/resabike/index.php");
 
         return $this->view->Render();
     }
-
-
-
-    public function deuxdex(){
-        $coucou = $this->model->getCoucou();
-
-        $this->view->Set('cc', $coucou);
-        $this->view->SetView(APPPATH.DS.'view'.DS.$this->currentController.DS.'view-index.php');
-        return $this->view->RenderPartial();
-    }
-
-    public function action_ajax(){
-        $coucou = $this->model->getCoucou();
-        $this->view->Set('cc', $coucou);
-        return $this->view->RenderAjax();
-    }
-
 
 
 }
