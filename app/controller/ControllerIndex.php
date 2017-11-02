@@ -22,8 +22,8 @@ class ControllerIndex extends Controller
 
     public function getStations() {
 //        return $this->model->getStations($_GET['input']);
-        $arrets = $this->model->getStations('S');
-        return $arrets;
+        $arrets = $this->model->getStations($_GET['input']);
+        return json_encode($arrets);
     }
 
     public function search()

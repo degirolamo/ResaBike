@@ -11,7 +11,7 @@ $(document).ready(function () {
         getAutocompleteFromDB(input, stations);
     });
 
-    Materialize.updateTextFields();
+    // Materialize.updateTextFields();
 
     $('.modal').modal();
     $('select').material_select();
@@ -24,7 +24,6 @@ $(document).ready(function () {
         canceltext: 'Cancel', // Text for cancel-button
         autoclose: false, // automatic close timepicker
         ampmclickable: true, // make AM PM clickable
-
     });
 
     $('.datepicker').pickadate({
@@ -50,32 +49,31 @@ $(document).ready(function () {
         var startStation = $('#input-startStation').val();
         var endStation = $('#input-endStation').val();
         getStopsFromApi(startStation, endStation);
-    })
+    });
 
 });
 
-function getAutocompleteFromDB(input, stations) {
+function getAutocompleteFromDB(input) {
     $.ajax({
         url: '/resabike/index/getStations',
         data: {
             'input': input
         },
-        dataType:'json',
         type: 'Get',
         success: function(resultJSON) {
-            // var result = JSON.parse(resultJSON);
-            //
-            // $.each(result, function(id, val) {
-            //     stations[val.name] = null;
-            // })
-            //
-            // $('input.autocompleteDB').autocomplete({
-            //     data: stations,
-            //     limit: 5,
-            //     minLength: 1
-            // });
+            var result = JSON.parse(resultJSON);
 
-            console.log(JSON.stringify(resultJSON));
+            $.each(result, function(id, val) {
+                result[val.nom] = null;
+            });
+
+            console.log(result);
+
+            $('input.autocompleteDB').autocomplete({
+                data: result,
+                limit: 5,
+                minLength: 1,
+            });
         }
     })
 }
@@ -196,9 +194,6 @@ function getAutocompleteFromApi(input, stations) {
             $('input.autocompleteApi').autocomplete({
                 data: stations,
                 limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-                onAutocomplete: function (val) {
-                    // Callback function when value is autcompleted.
-                },
                 minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
             });
             console.log(stations);
