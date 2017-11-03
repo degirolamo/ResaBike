@@ -15,71 +15,93 @@ use Resabike\Library\Entity\Arret;
 
 class ModelZone
 {
-    public function getAllZones() {
+    public function getAllZones()
+    {
         $zoneManager = new Zone();
         $zones = $zoneManager->getAllZone();
 
         return $zones;
     }
 
-    public function deleteZone($id) {
+    public function getAllGoodZones($idZone)
+    {
+        $zoneManager = new Zone();
+        $zones = $zoneManager->getAllZone();
+        $zoneGoodIdZone = [];
+// prendre que les zones avec le meme id que le user
+        foreach ($zones as $zone) {
+            if ($zone['id'] == $idZone)
+                $zoneGoodIdZone[count($zoneGoodIdZone)] = $zone;
+
+        }
+
+
+        return $zoneGoodIdZone;
+    }
+
+    public function deleteZone($id)
+    {
         $zoneManager = new Zone();
         return $zoneManager->deleteZone($id);
     }
 
-    public function deleteStations($id) {
+    public function deleteStations($id)
+    {
         $arretManager = new Arret();
         $arrets = $arretManager->getAllArret();
 
-        foreach($arrets as $arret) {
-            if($arret['idZone'] == $id)
+        foreach ($arrets as $arret) {
+            if ($arret['idZone'] == $id)
                 $arretManager->deleteArret($arret['id']);
         }
     }
 
-    public function addZone($nom) {
+    public function addZone($nom)
+    {
         $zoneManager = new Zone();
         return $zoneManager->addZone($nom);
     }
 
-    public function editZone($id){
+    public function editZone($id)
+    {
         $zoneManager = new Zone();
         $zoneEdited = $zoneManager->getZoneById($id);
-
 
 
         return $zoneEdited;
     }
 
-    public function updateZone($id,$nom) {
+    public function updateZone($id, $nom)
+    {
 
         $zoneManager = new Zone();
-        return $zoneManager->updateZone($id,$nom);
+        return $zoneManager->updateZone($id, $nom);
 
 
     }
 
-    public function existsStation($name, $idZone) {
+    public function existsStation($name, $idZone)
+    {
         $arretManager = new Arret();
         $stations = $arretManager->getAllArret();
 
-        foreach($stations as $station) {
-            if($name == $station['nom'] && $idZone == $station['idZone'])
+        foreach ($stations as $station) {
+            if ($name == $station['nom'] && $idZone == $station['idZone'])
                 return true;
         }
 
         return false;
     }
 
-    public function addStation($name, $idZone) {
+    public function addStation($name, $idZone)
+    {
         $arretManager = new Arret();
-        if(!$this->existsStation($name, $idZone)) {
+        if (!$this->existsStation($name, $idZone)) {
             $arretManager->addArret($name, $idZone);
             return true;
         }
         return false;
     }
-
 
 
 }

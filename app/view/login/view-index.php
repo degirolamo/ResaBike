@@ -16,14 +16,14 @@
             <div class="row smallRow">
                 <div class="input-field col s6">
                     <label for="pseudo"><?php trad('Username'); ?></label>
-                    <input id="pseudo" type="text" class="validate">
+                    <input name="pseudo" id="pseudo" type="text" class="validate" required="required">
                 </div>
 
                 <div class="row smallRow">
                         <div class="col s12">
                             <div class="input-field col s6">
                                 <label for="mdp"><?php trad('password'); ?></label>
-                                <input id="mdp" type="text" class="validate">
+                                <input name="mdp" id="mdp" type="password" class="validate" required="required">
                             </div>
                         </div>
                 </div>

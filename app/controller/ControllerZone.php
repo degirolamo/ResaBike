@@ -10,11 +10,18 @@ class ControllerZone extends Controller
 
     public function index()
     {
+        $UserConnected = $_SESSION['UserConnected'];
 
-        $zones = $this->model->getAllZones();
+        if ($_SESSION['UserConnected']['idRole'] == 3) {
+            $zones = $this->model->getAllZones();
+
+        } else {
+
+            $zones = $this->model->getAllGoodZones($UserConnected['idZone']);
+        }
+
         $this->view->Set('zones', $zones);
         return $this->view->Render();
-
 
     }
 
@@ -22,7 +29,7 @@ class ControllerZone extends Controller
     {
         if (isset($_POST['submit'])) {
             $lastInsertId = $this->model->addZone($_POST['nom']);
-            header('Location: /resabike/zone/edit?id='.$lastInsertId);
+            header('Location: /resabike/zone/edit?id=' . $lastInsertId);
         }
         return $this->view->Render();
     }
@@ -49,21 +56,23 @@ class ControllerZone extends Controller
         return $this->view->Render();
     }
 
-    public function addStation() {
+    public function addStation()
+    {
         $name = $_GET['name'];
         $zone = $_GET['zone'];
 
-        if($this->model->addStation($name, $zone))
+        if ($this->model->addStation($name, $zone))
             return 'Station ajoutée !';
         return 'Cette station existe déjà';
     }
 
-    public function addAllStations() {
+    public function addAllStations()
+    {
         $stations = explode(';', $_GET['stations']);
         $messages = [];
 
-        foreach($stations as $station) {
-            if($this->model->addStation($station, $_GET['zone']))
+        foreach ($stations as $station) {
+            if ($this->model->addStation($station, $_GET['zone']))
                 array_push($messages, 'Station ajoutée !');
             array_push($messages, 'Cette station existe déjà');;
         }

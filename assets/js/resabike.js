@@ -113,7 +113,7 @@ function getStopsFromApi(startStation, endStation) {
             stops.forEach(function (s) {
                 html += '<tr>' +
                     '<td>' + s + '</td>' +
-                    '<td id="td-add-station-' + i + '"><button type="button" class="waves-effect waves-green btn-flat" data-name="' + s + '" data-zone="' + getParameterByName('id') + '" id="btn-add-station-' + i + '">Ajouter</button></td>';
+                    '<td id="td-add-station-' + i + '"><button type="button" class="waves-effect waves-green btn" data-name="' + s + '" data-zone="' + getParameterByName('id') + '" id="btn-add-station-' + i + '">Ajouter</button></td>';
 
                 i++;
             });

@@ -20,17 +20,39 @@
         <nav class="teal lighten-2">
             <div class="nav-wrapper">
                 <div class="container">
-                    <a style="margin-right: 15%;" class="brand-logo right" href="/resabike/login"><?php trad('Login'); ?></a>
+                    <a style="margin-right: 15%;" class="brand-logo right"
+                       href="/resabike/login/logout"><?php trad('Logout'); ?></a>
+
                     <ul class="right" style="display:inline-block; margin-right: -15%;">
-                        <li><a href="<?php echo '/resabike/languages?lang=en&lastPage='.$this->currentController.'/'.$this->currentAction; ?>">en</a></li>
-                        <li><a href="<?php echo '/resabike/languages?lang=fr&lastPage='.$this->currentController.'/'.$this->currentAction; ?>">fr</a></li>
-                        <li><a href="<?php echo '/resabike/languages?lang=de&lastPage='.$this->currentController.'/'.$this->currentAction; ?>">de</a></li>
+                        <li>
+                            <a href="<?php echo '/resabike/languages?lang=en&lastPage=' . $this->currentController . '/' . $this->currentAction; ?>">en</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo '/resabike/languages?lang=fr&lastPage=' . $this->currentController . '/' . $this->currentAction; ?>">fr</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo '/resabike/languages?lang=de&lastPage=' . $this->currentController . '/' . $this->currentAction; ?>">de</a>
+                        </li>
                     </ul>
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
-                        <li><a href="/resabike/index"><?php trad('Home'); ?></a></li>
-                        <li><a href="/resabike/zone"><?php trad('Zones'); ?></a></li>
-                        <li><a href="/resabike/users"><?php trad('Users'); ?></a></li>
-                        <li><a href="/resabike/book"><?php trad('Books'); ?></a></li>
+                        <!-- SysAdmin -->
+                        <?php if ($_SESSION['UserConnected']['idRole'] >= 3) {
+                            echo '<li><a href="/resabike/users">' .trad('Users', true) . '</a></li>';
+                        } ?>
+                        <!-- Admin -->
+                        <?php if ($_SESSION['UserConnected']['idRole'] >= 2) {
+
+                            echo '<li><a href="/resabike/zone">' .trad('Zones', true). '</a></li>';
+                        } ?>
+                        <!-- Driver -->
+                        <?php if ($_SESSION['UserConnected']['idRole'] >= 1) {
+
+                            echo '<li><a href="/resabike/book">' . trad('Books', true). '</a></li>';
+                        } ?>
+
+                        <li><a href="/resabike/index/about"><?php trad('About', true); ?></a></li>
+                        <li><a href="/resabike/index/about"><?php trad('About'); ?></a></li>
+                        <li><a href="/resabike/index/contact"><?php trad('Contact Us'); ?></a></li>
                     </ul>
                 </div>
             </div>
@@ -46,5 +68,3 @@
 <footer></footer>
 </body>
 </html>
-
-

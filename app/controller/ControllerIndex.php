@@ -17,12 +17,39 @@ class ControllerIndex extends Controller
 
         }
 
+        $this->view->SetLayout(APPPATH.DS.'view'.DS.'_shared'.DS.'view-notConnected.php');
         return $this->view->Render();
     }
 
+    public  function about()
+    {
+        if(isset($_SESSION['UserConnected'])==true)
+            $this->view->SetLayout(APPPATH.DS.'view'.DS.'_shared'.DS.'view-main.php');
+        else
+            $this->view->SetLayout(APPPATH.DS.'view'.DS.'_shared'.DS.'view-notConnected.php');
+
+        return $this->view->Render();
+
+
+    }
+
+    public function contact()
+    {
+
+        if(isset($_SESSION['UserConnected'])==true)
+            $this->view->SetLayout(APPPATH.DS.'view'.DS.'_shared'.DS.'view-main.php');
+        else
+            $this->view->SetLayout(APPPATH.DS.'view'.DS.'_shared'.DS.'view-notConnected.php');
+
+        return $this->view->Render();
+
+    }
     public function getStations() {
 //        return $this->model->getStations($_GET['input']);
         $arrets = $this->model->getStations($_GET['input']);
+
+
+
         return json_encode($arrets);
     }
 
@@ -40,6 +67,8 @@ class ControllerIndex extends Controller
             header('Location: /resabike/index/confirmReserv');
         }
 
+
+
         return $this->view->Render();
     }
 
@@ -51,6 +80,8 @@ class ControllerIndex extends Controller
             header('Location: /resabike/zone/showZonesSYSADMIN');
         }
 
+
+
         return $this->view->Render();
 
     }
@@ -59,9 +90,11 @@ class ControllerIndex extends Controller
     public function confirmReserv()
     {
 
-        header("refresh:3;url=/resabike/index.php");
+        header("refresh:2;url=/resabike/index.php");
 
-        return $this->view->Render();
+
+
+        return $this->view->RenderPartial();
     }
 
 

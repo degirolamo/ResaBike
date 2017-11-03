@@ -1,6 +1,14 @@
 <div class="container">
     <h1><?php trad('All Zones'); ?></h1></td>
-    <a class="btn waves-effect waves-light" href="/resabike/zone/add"><?php trad('Add a zone'); ?></a>
+
+    <?php
+
+    if($_SESSION['UserConnected']['idRole'] == 3){
+
+       echo '<a class="btn waves-effect waves-light" href="/resabike/zone/add">'. trad('Add a zone',true).'</a>';
+
+    }
+    ?>
     <table class="bordered">
         <thead>
         <tr>
