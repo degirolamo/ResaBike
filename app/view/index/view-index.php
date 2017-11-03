@@ -1,5 +1,9 @@
+<div class="container">
 <div class="index-page">
     <div class="form">
+
+        <h2 style="margin-bottom: 1%; margin-top: -0.5%">Type your research</h2>
+
         <form class="login-form col s6" method="POST">
             <div class="row smallRow">
                 <div class="input-field col s6">
@@ -48,4 +52,5 @@
             </div>
         </form>
     </div>
+</div>
 </div>

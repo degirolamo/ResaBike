@@ -37,8 +37,8 @@
                     <p>'. trad('Are you sure that you want to delete this zone ? ', true) .'</p>
                 </div>
                 <div class="modal-footer">
-                    <a href="/resabike/zone/delete?id='.$zone['id'].'" class="modal-action modal-close waves-effect waves-green btn-flat">'. trad('Confirme', true) .'</a>
-                    <a href="" class="modal-action modal-close waves-effect waves-green btn-flat">'. trad('Cancel', true) .'</a>
+                    <a href="/resabike/zone/delete?id='.$zone['id'].'" class="waves-effect waves-light btn modal-trigger">'. trad('Confirme', true) .'</a>
+                    <a href="" class="waves-effect waves-light btn modal-trigger">'. trad('Cancel', true) .'</a>
                 </div>
             </div>';
 
