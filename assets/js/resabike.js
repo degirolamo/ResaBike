@@ -51,7 +51,34 @@ $(document).ready(function () {
         getStopsFromApi(startStation, endStation);
     });
 
+    $('#btn-searchTime').click(function(){
+        var from = $('#idfrom').val();
+        var to = $('#idto').val();
+        var date = $('#iddate').val();
+        var time = $('#idtime').val();
+        var newDate = myDateFormatter(date);
+        var mail = $('#idMail').val();
+        var nbBikes = $('#nbrvelo').val();
+        getHourFromApi(from, to, newDate, time, mail, nbBikes)
+    });
+
 });
+
+function myDateFormatter(dateToConvert) {
+    console.log(dateToConvert);
+    var d = new Date(dateToConvert);
+    var day = d.getDate();
+    var month = d.getMonth() + 1;
+    var year = d.getFullYear();
+    if (day < 10) {
+        day = "0" + day;
+    }
+    if (month < 10) {
+        month = "0" + month;
+    }
+    var date = month + "/" + day + "/" + year;
+    return date;
+};
 
 function getAutocompleteFromDB(input) {
     $.ajax({
@@ -60,10 +87,10 @@ function getAutocompleteFromDB(input) {
             'input': input
         },
         type: 'Get',
-        success: function(resultJSON) {
+        success: function (resultJSON) {
             var result = JSON.parse(resultJSON);
 
-            $.each(result, function(id, val) {
+            $.each(result, function (id, val) {
                 result[val.nom] = null;
             });
 
@@ -77,6 +104,84 @@ function getAutocompleteFromDB(input) {
         }
     })
 }
+
+
+
+
+function getHourFromApi(from, to, date, hour, mail, nbBikes) {
+    from = 'Sierre, poste/gare';
+    to = 'Vissoie, poste';
+    date = '11/23/2017';
+    hour = '14:30';
+    mail = 'danlefdp@gmail.com';
+    $nbBikes = 2;
+    $.ajax({
+        url: "https://timetable.search.ch/api/route.en.json?from=" + from + "&to=" + to + "&date=" + date + "&time=" + hour,
+        type: 'Get',
+        dataType: 'json',
+        success: function (result) {
+            var book = [];
+            for (var i = 0; i < result.connections.length; i++) {
+                var lines = [];
+                for (var j = 0; j < result.connections[i].legs.length; j++) {
+                    var leg = result.connections[i].legs[j];
+                    if (leg.type == "bus" || leg.type == "post") {
+                        lines.push(leg.line);
+                        var from = result.connections[i].legs[0].name;
+                        var to = leg.exit.name;
+                        var departure = result.connections[i].legs[0].departure;
+                        var arrival = leg.exit.arrival;
+                    }
+
+                    var legDetails = {
+                        from: from,
+                        to: to,
+                        departure: departure,
+                        arrival: arrival
+                    }
+                }
+
+                book.push(legDetails);
+            }
+
+            fillTab(book, mail, nbBikes);
+        }
+    })
+}
+
+function fillTab(trips, mail, nbBikes) {
+    var result = "";
+    for(var i = 0 ; i <trips.length ; i++){
+        result +=   '<tr>' +
+            '<td>'+trips[i].from+'</td>'+
+            '<td>'+trips[i].to+'</td>'+
+            '<td>'+trips[i].departure+'</td>'+
+            '<td>'+trips[i].arrival+'</td>'+
+            '<td>'+'<button type="button" id="btn-book-'+i+'">Reserver</button>'+'</td>'+
+            '</tr>'
+    }
+    $('#tabHeur').html(result);
+
+    $('[id^="btn-book-"]').click(function () {
+        var id = this.id.substring(this.id.length -1, this.id.length);
+        console.log(id);
+        html = '' +
+            '<form id="formReserv" method="post" action="/resabike/index/confirmReserv">' +
+            '<input type="text" name="from" value="' + trips[id].from + '">' +
+            '<input type="text" name="to" value="' + trips[id].to + '">' +
+            '<input type="text" name="departure" value="' + trips[id].departure + '">' +
+            '<input type="text" name="arrival" value="' + trips[id].arrival + '">' +
+            '<input type="text" name="mail" value="' + mail + '">' +
+            '<input type="text" name="nbBikes" value="' + nbBikes + '">' +
+            '<button type="submit" name="submit" id="btnReserv">Réserver</button>' +
+            '</form>';
+
+        $('#hiddenForm').show();
+        $('#hiddenForm').html(html);
+        $('#btnReserv').click();
+    })
+}
+
 
 function getStopsFromApi(startStation, endStation) {
     $.ajax({
@@ -131,7 +236,7 @@ function getStopsFromApi(startStation, endStation) {
                         'zone': $(this).data('zone')
                     }
                 }).done(function (res) {
-                    var nb = $this.id.replace( /^\D+/g, '');
+                    var nb = $this.id.replace(/^\D+/g, '');
                     var tdToChange = '#td-add-station-' + nb;
                     $(tdToChange).html(res);
                 })
@@ -155,7 +260,7 @@ function getStopsFromApi(startStation, endStation) {
                     console.log(res);
                     var messages = JSON.parse(res);
                     console.log(messages);
-                    for(var i = 0; i < messages.length; i++) {
+                    for (var i = 0; i < messages.length; i++) {
                         var tdToChange = '#td-add-station-' + i;
                         $(tdToChange).html(messages[i]);
                     }

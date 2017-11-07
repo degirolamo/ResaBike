@@ -10,24 +10,23 @@ class ControllerIndex extends Controller
 
     public function index()
     {
-        if (isset($_POST['submit'])) {
-            $_SESSION['date'] = $_POST['date'];
-            $_SESSION['from'] = $_POST['from'];
-            $_SESSION['to'] = $_POST['to'];
+        if (isset($_POST['btn-searchTime'])) {
+
+
             header('Location: /resabike/index/search');
 
         }
 
-        $this->view->SetLayout(APPPATH.DS.'view'.DS.'_shared'.DS.'view-notConnected.php');
+        $this->view->SetLayout(APPPATH . DS . 'view' . DS . '_shared' . DS . 'view-notConnected.php');
         return $this->view->Render();
     }
 
-    public  function about()
+    public function about()
     {
-        if(isset($_SESSION['UserConnected'])==true)
-            $this->view->SetLayout(APPPATH.DS.'view'.DS.'_shared'.DS.'view-main.php');
+        if (isset($_SESSION['UserConnected']) == true)
+            $this->view->SetLayout(APPPATH . DS . 'view' . DS . '_shared' . DS . 'view-main.php');
         else
-            $this->view->SetLayout(APPPATH.DS.'view'.DS.'_shared'.DS.'view-notConnected.php');
+            $this->view->SetLayout(APPPATH . DS . 'view' . DS . '_shared' . DS . 'view-notConnected.php');
 
         return $this->view->Render();
 
@@ -37,15 +36,17 @@ class ControllerIndex extends Controller
     public function contact()
     {
 
-        if(isset($_SESSION['UserConnected'])==true)
-            $this->view->SetLayout(APPPATH.DS.'view'.DS.'_shared'.DS.'view-main.php');
+        if (isset($_SESSION['UserConnected']) == true)
+            $this->view->SetLayout(APPPATH . DS . 'view' . DS . '_shared' . DS . 'view-main.php');
         else
-            $this->view->SetLayout(APPPATH.DS.'view'.DS.'_shared'.DS.'view-notConnected.php');
+            $this->view->SetLayout(APPPATH . DS . 'view' . DS . '_shared' . DS . 'view-notConnected.php');
 
         return $this->view->Render();
 
     }
-    public function getStations() {
+
+    public function getStations()
+    {
 //        return $this->model->getStations($_GET['input']);
         $arrets = $this->model->getStations($_GET['input']);
 
@@ -63,14 +64,6 @@ class ControllerIndex extends Controller
 
         echo getcwd();
 
-        if (isset($_POST['reserv'])) {
-
-        $this->sendMail();
-
-            header('Location: /resabike/index/confirmReserv');
-        }
-
-
 
         return $this->view->Render();
     }
@@ -84,7 +77,6 @@ class ControllerIndex extends Controller
         }
 
 
-
         return $this->view->Render();
 
     }
@@ -92,25 +84,41 @@ class ControllerIndex extends Controller
 
     public function confirmReserv()
     {
+        if(isset($_POST['submit'])) {
+            //idStationDepart
+            $idStationDep = $this->model->getStationByName($_POST['from'])['id'];
+            //idStationFin
+            $idStationEnd = $this->model->getStationByName($_POST['to'])['id'];
+            //email
+            $email = $_POST['mail'];
+            //nbVelos
+            $nbVelos = $_POST['nbBikes'];
+            //dateDepart
+            $dateDepart = date('Y-m-d H:i:s', strtotime($_POST['departure']));
+            //Ajout dans la base de données
+            $this->model->addBook($idStationDep, $idStationEnd, $email, $nbVelos, $dateDepart, 1);
+            //Envoi de mail user
+            //Envoi de mail admin
+        }
 
         header("refresh:2;url=/resabike/index.php");
-
 
 
         return $this->view->RenderPartial();
     }
 
 
-    public function sendMail(){
+    public function sendMail()
+    {
 
 
         require 'PHPMailer/PHPMailerAutoload.php';
         $mail = new PHPMailer;
         $mail->setFrom('kevin_carneiro@hotmail.fr', 'moi');
         $mail->addAddress('kevin_carneiro@hotmail.fr', 'poto');
-        $mail->Subject  = 'First PHPMailer Message';
-        $mail->Body     = 'Hi! This is my first e-mail sent through PHPMailer.';
-        if(!$mail->send()) {
+        $mail->Subject = 'First PHPMailer Message';
+        $mail->Body = 'Hi! This is my first e-mail sent through PHPMailer.';
+        if (!$mail->send()) {
             echo 'Message was not sent.';
             echo 'Mailer error: ' . $mail->ErrorInfo;
         } else {

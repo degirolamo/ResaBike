@@ -1,5 +1,5 @@
 <?php
-
+use resabike\library\php\phpMailer;
 function error_404(){
     return '404 ça marche pas';
 }
@@ -67,4 +67,34 @@ function returnOrEcho($value, $isReturn)
         echo $value;
     }
     return '';
+}
+
+function phpMailer($from, $to, $object){
+    $mail = new PHPMailer();
+    $mail->IsSMTP();
+    $mail->SMTPDebug = 0; // debugging: 1 = errors and messages, 2 = messages only
+    $mail->SMTPOptions = array(
+        'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        )
+    );
+    $mail->SMTPAuth = true; // authentication enabled
+    $mail->SMTPSecure = 'tls'; // secure transfer enabled REQUIRED for Gmail
+    $mail->Host = "smtp.gmail.com";
+    $mail->Port = 587; // or 465
+    $mail->Username = "bestproject69kevdan@gmail.com";
+    $mail->Password = "salutcava";
+    $mail->IsHTML(true);
+    $mail->From = $from;
+    $mail->AddAddress($to);
+    $mail->AddReplyTo($from);
+    $mail->Subject = 'Resabike: ' . utf8_decode($object);
+    $mail->Body = 'Salut, t\'as bien réservé chez les meilleurs du coin, kiss, kiss';
+
+    if (!$mail->Send()) // Teste le return code de la fonction
+        echo $mail->ErrorInfo; // Affiche le message d\'erreur
+    $mail->SmtpClose();
+    unset($mail);
 }

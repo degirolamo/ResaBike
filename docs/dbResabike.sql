@@ -43,13 +43,7 @@ CREATE TABLE reservation (
   id           INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
   idStationDep INT          NOT NULL,
   idStationFin INT          NOT NULL,
-  nom          VARCHAR(50)  NOT NULL,
-  prenom       VARCHAR(50)  NOT NULL,
-  nomGroupe    VARCHAR(30),
   email        VARCHAR(100) NOT NULL,
-  tel          VARCHAR(12),
-  remarque     TEXT,
-  dateCreation DATETIME     NOT NULL,
   nbVelos      INT          NOT NULL,
   dateDepart   DATETIME     NOT NULL,
   confirme     TINYINT      NOT NULL DEFAULT 0
@@ -74,9 +68,3 @@ INSERT INTO zone VALUES (NULL, 'Val d\'Anniviers'), (NULL, 'Val d\'Hérens');
 #
 # INSERT INTO remorque VALUES (NULL, 1, 20, 0), (NULL, 1, 20, 0), (NULL, 1, 20, 0), (NULL, 2, 20, 0), (NULL, 2, 20, 0),
 #   (NULL, 2, 20, 0), (NULL, 2, 20, 0);
-#
-# INSERT INTO reservation VALUES
-#   (NULL, 1, 3, 'De Girolamo', 'Daniel', NULL, 'degirolamo.daniel@gmail.com', NULL, NULL, '2017-10-06 15:41:00', 1,
-#    '2017-10-20 12:45:00', 1),
-#   (NULL, 3, 4, 'Carneiro', 'Kevin', NULL, 'kevin_carneiro@hotmail.com', NULL, NULL, '2017-10-06 15:41:00', 1,
-#    '2017-10-20 13:15:00', 0);
