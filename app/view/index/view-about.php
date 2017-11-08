@@ -12,7 +12,7 @@
 
 
     <body>
-        <h1><?php trad('About us'); ?></h1>
+        <h1 class="titre"><?php trad('About us'); ?></h1>
         <div class="row smallRow">
             <div class="col s12">
                 <p>RESABIKE est un projet visant à faciliter la vie des cyclistes voyageant en transports publics sur les lignes régionales. Nous parlons donc principalement des bus et autres cars postaux, et surtout dans les régions touristiques !

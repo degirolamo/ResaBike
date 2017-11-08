@@ -27,6 +27,7 @@ class Reservation
         $stat->bindParam(":dateDepart", $dateDepart);
         $stat->bindParam(":confirme", $confirme);
         $stat->execute();
+        return $conn->lastInsertId();
     }
 
     public function deleteReservation($id)

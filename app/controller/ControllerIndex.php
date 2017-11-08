@@ -16,7 +16,6 @@ class ControllerIndex extends Controller
             header('Location: /resabike/index/search');
 
 
-
         }
 
         $this->view->SetLayout(APPPATH . DS . 'view' . DS . '_shared' . DS . 'view-notConnected.php');
@@ -86,7 +85,7 @@ class ControllerIndex extends Controller
 
     public function confirmReserv()
     {
-        if(isset($_POST['submit'])) {
+        if (isset($_POST['submit'])) {
 
             $idStationDep = $this->model->getStationByName($_POST['from'])['id'];
             //idStationFin
@@ -101,18 +100,14 @@ class ControllerIndex extends Controller
             $phone = $_POST['phone'];
 
 
-
-
-
             $lastInsertId = $this->model->addBook($idStationDep, $idStationEnd, $email, $phone, $nbVelos, $dateDepart, 1);
             //Envoi de mail user
-            phpMailer('bestproject69kevdan@gmail.com',$email,'Reservation Resabike '.$dateDepart, 'Bonjour, <br/><br/>Vous avez effectué une réservation. <br/><br/> Merci pour votre confiance ! <br/><br/>Si vous souhaitez supprimer votre réservation, cliquez sur le lien suivant : http://resabike/book/deleteByMail?id='.$lastInsertId.'<br/><br/><br/> Team Resabike');
+            phpMailer('bestproject69kevdan@gmail.com', $email, 'Reservation Resabike ' . $dateDepart, 'Bonjour, <br/><br/>Vous avez effectué une réservation. <br/><br/> Merci pour votre confiance ! <br/><br/>Si vous souhaitez supprimer votre réservation, cliquez sur le lien suivant : http://localhost/resabike/index/delete?id=' . $lastInsertId . '<br/><br/><br/> Team Resabike');
+
             //Envoi de mail admin'Reservation Resabike '.$dateDepart
 
 
-
-
-            phpMailer('bestproject69kevdan@gmail.com','bestproject69kevdan@gmail.com','Reservation '.$email.' '.$dateDepart, 'Bonjour, <br/><br/>Une reservation a été faite par '.$email.'<br/><br/>Veuillez vérifier avec le ZoneAdmin si nous avons besoin dune remorque. <br/><br/><br/> ResaBike <br/> SysAdmin');
+            phpMailer('bestproject69kevdan@gmail.com', 'bestproject69kevdan@gmail.com', 'Reservation ' . $email . ' ' . $dateDepart, 'Bonjour, <br/><br/>Une reservation a été faite par ' . $email . '<br/><br/>Veuillez vérifier avec le ZoneAdmin si nous avons besoin dune remorque. <br/><br/><br/> ResaBike <br/> SysAdmin');
 
 
         }
@@ -123,6 +118,10 @@ class ControllerIndex extends Controller
         return $this->view->RenderPartial();
     }
 
+    public function delete()
+    {
+        $this->model->deleteBook($_GET['id']);
+        header("Location: /resabike/index");
 
-
+    }
 }

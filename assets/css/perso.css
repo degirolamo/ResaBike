@@ -53,5 +53,9 @@ main {
     margin-left: 23%;
     border-radius: 10px;
 }
+.h1 titre {
+    font-style: italic !important;
+    font-weight: bold !important;
+}
 
 

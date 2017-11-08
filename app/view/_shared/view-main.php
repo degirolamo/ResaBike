@@ -75,7 +75,7 @@
                 <h5><?php trad('Links')?></h5>
                 <ul>
                     <li><i class="material-icons blackIcon"">contact_mail</i><a class="blackLinks" href="mailto:bestproject69kevdan@gmail.com"><?php trad('Contact us by email')?></a></li>
-                    <li><i class="material-icons blackIcon"">wifi</i><a class="blackLinks" href="http://www.resabike.ch/">Resabike.ch</a></li>
+                    <li><i class="material-icons blackIcon"">web</i><a class="blackLinks" href="http://www.resabike.ch/">Resabike.ch</a></li>
                 </ul>
             </div>
         </div>

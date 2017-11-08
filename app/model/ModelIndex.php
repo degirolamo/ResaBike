@@ -38,5 +38,10 @@ class ModelIndex extends Model{
         return $reservationManager->addReservation($idStartStation, $idEndStation, $email,$phone, $nbVelos, $dateDepart, $confirme);
     }
 
+    public function deleteBook($id) {
+        $bookManager = new Reservation();
+        return $bookManager->deleteReservation($id);
+    }
+
 
 }

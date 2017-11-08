@@ -167,7 +167,7 @@ function fillTab(trips, mail, nbBikes, phone) {
             '<td>'+trips[i].to+'</td>'+
             '<td>'+trips[i].departure+'</td>'+
             '<td>'+trips[i].arrival+'</td>'+
-            '<td>'+'<button type="button" id="btn-book-'+i+'">Reserver</button>'+'</td>'+
+            '<td>'+'<button  class="btn waves-effect waves-light resa-btn" type="button" id="btn-book-'+i+'">Réserver</button>'+'</td>'+
             '</tr>'
     }
     $('#tabHeur').html(result);
