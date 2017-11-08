@@ -176,7 +176,7 @@ function fillTab(trips, mail, nbBikes) {
             '<button type="submit" name="submit" id="btnReserv">Réserver</button>' +
             '</form>';
 
-        $('#hiddenForm').show();
+        $('#hiddenForm').hide();
         $('#hiddenForm').html(html);
         $('#btnReserv').click();
     })
