@@ -60,6 +60,8 @@ $(document).ready(function () {
         var mail = $('#idMail').val();
         var phone = $('#idPhone').val();
         var nbBikes = $('#nbrvelo').val();
+        console.log(from,to);
+        console.log('dsadsa');
         getHourFromApi(from, to, newDate, time, mail, phone, nbBikes)
     });
 
@@ -110,13 +112,14 @@ function getAutocompleteFromDB(input) {
 
 
 function getHourFromApi(from, to, date, hour, mail, phone, nbBikes) {
+    console.log('cest le from pour la requete API qui recoit : '+from)
     from = 'Sierre, poste/gare';
     to = 'Vissoie, poste';
     date = '11/23/2017';
     hour = '14:30';
     mail = 'kev.carneiro@gmail.com';
     phone = '+41 79/580/236';
-    $nbBikes = 2;
+    nbBikes = 2;
     $.ajax({
         url: "https://timetable.search.ch/api/route.en.json?from=" + from + "&to=" + to + "&date=" + date + "&time=" + hour,
         type: 'Get',
@@ -145,7 +148,7 @@ function getHourFromApi(from, to, date, hour, mail, phone, nbBikes) {
 
                 book.push(legDetails);
             }
-
+    console.log(book);
             fillTab(book, mail, nbBikes, phone);
         }
     })
@@ -153,6 +156,11 @@ function getHourFromApi(from, to, date, hour, mail, phone, nbBikes) {
 
 function fillTab(trips, mail, nbBikes, phone) {
     var result = "";
+    console.log(trips);
+    console.log(mail);
+    console.log(phone);
+    console.log(nbBikes);
+
     for(var i = 0 ; i <trips.length ; i++){
         result +=   '<tr>' +
             '<td>'+trips[i].from+'</td>'+

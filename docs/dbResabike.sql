@@ -62,10 +62,10 @@ INSERT INTO `utilisateur` VALUES
 
 INSERT INTO zone VALUES (NULL, 'Val d\'Anniviers'), (NULL, 'Val d\'Hérens');
 
-# INSERT INTO arret VALUES
-#   (NULL, 'Sierre', 1), (NULL, 'Niouc', 1y),
-#   (NULL, 'Vissoie', 1), (NULL, 'Ayer', 1),
-#   (NULL, 'Zinal', 1);
+ INSERT INTO arret VALUES
+   (NULL, 'Sierre', 1), (NULL, 'Niouc', 1y),
+   (NULL, 'Vissoie', 1), (NULL, 'Ayer', 1),
+   (NULL, 'Zinal', 1);
 #
 # INSERT INTO remorque VALUES (NULL, 1, 20, 0), (NULL, 1, 20, 0), (NULL, 1, 20, 0), (NULL, 2, 20, 0), (NULL, 2, 20, 0),
 #   (NULL, 2, 20, 0), (NULL, 2, 20, 0);

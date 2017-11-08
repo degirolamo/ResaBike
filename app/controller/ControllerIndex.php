@@ -87,7 +87,7 @@ class ControllerIndex extends Controller
     public function confirmReserv()
     {
         if(isset($_POST['submit'])) {
-            //idStationDepart
+
             $idStationDep = $this->model->getStationByName($_POST['from'])['id'];
             //idStationFin
             $idStationEnd = $this->model->getStationByName($_POST['to'])['id'];
@@ -98,9 +98,15 @@ class ControllerIndex extends Controller
             //dateDepart
             $dateDepart = date('Y-m-d H:i:s', strtotime($_POST['departure']));
             //Ajout dans la base de données
-            $lastInsertId = $this->model->addBook($idStationDep, $idStationEnd, $email, $nbVelos, $dateDepart, 1);
+            $phone = $_POST['phone'];
+
+
+
+
+
+            $lastInsertId = $this->model->addBook($idStationDep, $idStationEnd, $email, $phone, $nbVelos, $dateDepart, 1);
             //Envoi de mail user
-            phpMailer('bestproject69kevdan@gmail.com',$email,'Reservation Resabike '.$dateDepart, 'Bonjour, <br/><br/>Vous avez effectué une réservation. <br/><br/> Merci pour votre confiance ! <br/><br/>Si vous souhaitez supprimer votre réservation, cliquez sur le lien suivant : <a href="/resabike/book/deleteByMail?id='.$lastInsertId.'">Supprimer votre resrvation</a><br/><br/><br/> Team Resabike');
+            phpMailer('bestproject69kevdan@gmail.com',$email,'Reservation Resabike '.$dateDepart, 'Bonjour, <br/><br/>Vous avez effectué une réservation. <br/><br/> Merci pour votre confiance ! <br/><br/>Si vous souhaitez supprimer votre réservation, cliquez sur le lien suivant : http://resabike/book/deleteByMail?id='.$lastInsertId.'<br/><br/><br/> Team Resabike');
             //Envoi de mail admin'Reservation Resabike '.$dateDepart
 
 

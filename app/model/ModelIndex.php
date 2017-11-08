@@ -22,6 +22,9 @@ class ModelIndex extends Model{
         $arretManager = new Arret();
         $stations = $arretManager->getAllArret();
 
+
+
+
         foreach ($stations as $station) {
             if($station['nom'] == $name)
                 return $station;
@@ -29,9 +32,10 @@ class ModelIndex extends Model{
 
     }
 
-    public function addBook($idStartStation, $idEndStation, $email, $nbVelos, $dateDepart, $confirme) {
+    public function addBook($idStartStation, $idEndStation, $email, $phone,  $nbVelos, $dateDepart, $confirme) {
         $reservationManager = new Reservation();
-        return $reservationManager->addReservation($idStartStation, $idEndStation, $email, $nbVelos, $dateDepart, $confirme);
+
+        return $reservationManager->addReservation($idStartStation, $idEndStation, $email,$phone, $nbVelos, $dateDepart, $confirme);
     }
 
 
