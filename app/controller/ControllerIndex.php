@@ -98,7 +98,9 @@ class ControllerIndex extends Controller
             //Ajout dans la base de données
             $this->model->addBook($idStationDep, $idStationEnd, $email, $nbVelos, $dateDepart, 1);
             //Envoi de mail user
-            //Envoi de mail admin
+            phpMailer('bestproject69kevdan@gmail.com',$email,'Reservation Resabike '.$dateDepart, 'Bonjour, <br/><br/>Vous avez effectué une réservation. <br/><br/> Merci pour votre confiance ! <br/><br/><br/> Team Resabike');
+            //Envoi de mail admin'Reservation Resabike '.$dateDepart
+            phpMailer('bestproject69kevdan@gmail.com','bestproject69kevdan@gmail.com','Reservation '.$email.' '.$dateDepart, 'Bonjour, <br/><br/>Une reservation a été faite par '.$email.'<br/><br/>Veuillez vérifier avec le ZoneAdmin si nous avons besoin dune remorque. <br/><br/><br/> ResaBike <br/> SysAdmin');
         }
 
         header("refresh:2;url=/resabike/index.php");

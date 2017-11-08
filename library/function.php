@@ -69,7 +69,7 @@ function returnOrEcho($value, $isReturn)
     return '';
 }
 
-function phpMailer($from, $to, $object){
+function phpMailer($from, $to, $object, $body){
     $mail = new PHPMailer();
     $mail->IsSMTP();
     $mail->SMTPDebug = 0; // debugging: 1 = errors and messages, 2 = messages only
@@ -91,7 +91,7 @@ function phpMailer($from, $to, $object){
     $mail->AddAddress($to);
     $mail->AddReplyTo($from);
     $mail->Subject = 'Resabike: ' . utf8_decode($object);
-    $mail->Body = 'Salut, t\'as bien réservé chez les meilleurs du coin, kiss, kiss';
+    $mail->Body = $body;
 
     if (!$mail->Send()) // Teste le return code de la fonction
         echo $mail->ErrorInfo; // Affiche le message d\'erreur

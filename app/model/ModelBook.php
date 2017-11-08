@@ -21,6 +21,8 @@ class ModelBook
         return $books;
     }
 
+
+
     public function deleteBook($id) {
         $bookManager = new Reservation();
         return $bookManager->deleteReservation($id);

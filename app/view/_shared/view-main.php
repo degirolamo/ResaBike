@@ -50,9 +50,7 @@
                             echo '<li><a href="/resabike/book">' . trad('Books', true). '</a></li>';
                         } ?>
 
-                        <li><a href="/resabike/index/about"><?php trad('About', true); ?></a></li>
-                        <li><a href="/resabike/index/about"><?php trad('About'); ?></a></li>
-                        <li><a href="/resabike/index/contact"><?php trad('Contact Us'); ?></a></li>
+
                     </ul>
                 </div>
             </div>

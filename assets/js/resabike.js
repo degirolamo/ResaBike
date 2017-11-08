@@ -113,7 +113,7 @@ function getHourFromApi(from, to, date, hour, mail, nbBikes) {
     to = 'Vissoie, poste';
     date = '11/23/2017';
     hour = '14:30';
-    mail = 'danlefdp@gmail.com';
+    mail = 'kev.carneiro@gmail.com';
     $nbBikes = 2;
     $.ajax({
         url: "https://timetable.search.ch/api/route.en.json?from=" + from + "&to=" + to + "&date=" + date + "&time=" + hour,
