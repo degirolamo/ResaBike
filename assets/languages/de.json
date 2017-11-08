@@ -42,7 +42,12 @@
   "password": "Passwort",
   "Connection": "Verbindung",
   "Zone's name": "Zonenname",
-  "Roles": "Rollen"
-
-
+  "Roles": "Rollen",
+  "Logout": "Ausloggen",
+  "About": "Uber",
+  "Contact us by email": "Kontaktieren Sie uns per E-Mail",
+  "Type your research": "Geben Sie Ihre Forschung ein",
+  "How to contact us ?": "Wie kontaktieren Sie uns?",
+  "We invite you to send us a feedback about your experience on our website !": "Wir laden Sie ein, uns ein Feedback zu Ihrer Erfahrung auf unserer Website zu senden!",
+  "Links":"Links"
 }

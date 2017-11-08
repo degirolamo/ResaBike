@@ -51,7 +51,7 @@
                     <label for="email"><?php trad('Email'); ?></label>
                 </div>
             </div>
-            <button class="btn waves-effect waves-light" name="submit" type="submit"><?php trad('Confirme'); ?></button>
+            <button class="btn waves-effect waves-light resa-btn" name="submit" type="submit"><?php trad('Confirme'); ?></button>
             <a href="/resabike/users" class="btn waves-effect waves-light"><?php trad('Cancel'); ?></a>
 
         </form>

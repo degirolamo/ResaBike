@@ -20,7 +20,7 @@
             $actions = '
             
             <!-- Modal Trigger -->
-            <a href="#modal'.$book['id'].'" class="waves-effect waves-light btn modal-trigger">
+            <a href="#modal'.$book['id'].'" class="waves-effect waves-light btn modal-trigger resa-btn">
                 <i class="large material-icons">delete</i>
             </a> 
     
@@ -31,8 +31,8 @@
                     <p>'. trad('Are you sure that you want to delete this book ? ', true) .'</p>
                 </div>
                 <div class="modal-footer">
-                    <a href="/resabike/book/delete?id='.$book['id'].'" class="waves-effect waves-light btn modal-trigger">'. trad('Confirme', true) .'</a>
-                    <a href="" class="waves-effect waves-light btn modal-trigger">'. trad('Cancel', true) .'</a>
+                    <a href="/resabike/book/delete?id='.$book['id'].'" class="waves-effect waves-light btn modal-trigger resa-btn">'. trad('Confirme', true) .'</a>
+                    <a href="" class="waves-effect waves-light btn modal-trigger resa-btn">'. trad('Cancel', true) .'</a>
                 </div>
             </div>';
 

@@ -1,6 +1,6 @@
 <div class="container">
     <h1><?php trad('All users'); ?></h1></td>
-    <a class="btn waves-effect waves-light"href="/resabike/users/add"><?php trad('Add a new user'); ?></a>
+    <a class="btn waves-effect waves-light resa-btn"href="/resabike/users/add"><?php trad('Add a new user'); ?></a>
     <table class="bordered">
         <thead>
         <tr>
@@ -16,11 +16,11 @@
         $html = "";
         foreach($users as $user) {
             $actions = '
-            <a href="/resabike/users/edit?id='.$user['id'].'" class="waves-effect waves-light btn">
+            <a href="/resabike/users/edit?id='.$user['id'].'" class="waves-effect waves-light btn resa-btn">
                 <i class="large material-icons">edit</i>
             </a>
             <!-- Modal Trigger -->
-            <a href="#modal'.$user['id'].'" class="waves-effect waves-light btn modal-trigger">
+            <a href="#modal'.$user['id'].'" class="waves-effect waves-light btn modal-trigger resa-btn">
                 <i class="large material-icons">delete</i>
             </a> 
 
@@ -31,8 +31,8 @@
                     <p>'. trad('Are you sure that you want to delete this user ? ', true) .'</p>
                 </div>
                 <div class="modal-footer">
-                    <a href="/resabike/users/delete?id='.$user['id'].'" class="waves-effect waves-light btn modal-trigger">'. trad('Confirme', true) .'</a>
-                    <a href="" class="waves-effect waves-light btn modal-trigger">'. trad('Cancel', true) .'</a>
+                    <a href="/resabike/users/delete?id='.$user['id'].'" class="waves-effect waves-light btn modal-trigger resa-btn">'. trad('Confirme', true) .'</a>
+                    <a href="" class="waves-effect waves-light btn modal-trigger resa-btn">'. trad('Cancel', true) .'</a>
                 </div>
             </div>';
 

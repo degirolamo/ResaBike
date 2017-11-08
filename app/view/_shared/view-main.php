@@ -2,9 +2,11 @@
 <head>
     <!--Import Google Icon Font-->
     <link href="/resabike/assets/css/icon.css" rel="stylesheet">
-    <link href="/resabike/assets/css/perso.css" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="/resabike/assets/css/materialize.css" media="screen,projection"/>
+
+    <link href="/resabike/assets/css/perso.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -23,7 +25,7 @@
                     <a style="margin-right: 15%;" class="brand-logo right"
                        href="/resabike/login/logout"><?php trad('Logout'); ?></a>
 
-                    <ul class="right" style="display:inline-block; margin-right: -15%;">
+                    <ul class="right " style="display:inline-block; margin-right: -15%;">
                         <li>
                             <a href="<?php echo '/resabike/languages?lang=en&lastPage=' . $this->currentController . '/' . $this->currentAction; ?>">en</a>
                         </li>
@@ -35,6 +37,7 @@
                         </li>
                     </ul>
                     <ul id="nav-mobile" class="left hide-on-med-and-down">
+                        <li><i class="material-icons blackIcon"">directions_bike</i></li>
                         <!-- SysAdmin -->
                         <?php if ($_SESSION['UserConnected']['idRole'] >= 3) {
                             echo '<li><a href="/resabike/users">' .trad('Users', true) . '</a></li>';
@@ -49,8 +52,6 @@
 
                             echo '<li><a href="/resabike/book">' . trad('Books', true). '</a></li>';
                         } ?>
-
-
                     </ul>
                 </div>
             </div>
@@ -63,6 +64,27 @@
     <?php echo $html; ?>
 </main>
 
-<footer></footer>
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5><?php trad('How to contact us ?')?></h5>
+                <p class="text-lighten-4"><?php trad('We invite you to send us a feedback about your experience on our website !')?></p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5><?php trad('Links')?></h5>
+                <ul>
+                    <li><i class="material-icons blackIcon"">contact_mail</i><a class="blackLinks" href="mailto:bestproject69kevdan@gmail.com"><?php trad('Contact us by email')?></a></li>
+                    <li><i class="material-icons blackIcon"">wifi</i><a class="blackLinks" href="http://www.resabike.ch/">Resabike.ch</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2017 Copyright Daniel De Girolamo and Kevin Carneiro
+        </div>
+    </div>
+</footer>
 </body>
 </html>

@@ -29,11 +29,11 @@
             </div>
 
             <button type="button" id="btn-search"
-                    class="waves-effect waves-green btn"><?php trad('Search'); ?></button>
+                    class="waves-effect waves-green btn resa-btn"><?php trad('Search'); ?></button>
             <button type="button" id="btn-add-all"
-                    class="waves-effect waves-green btn"><?php trad('Add all stations'); ?></button>
+                    class="waves-effect waves-green btn resa-btn"><?php trad('Add all stations'); ?></button>
             <button type="submit" name="submitEdit"
-                    class="waves-effect waves-green btn"><?php trad('Terminate'); ?></button>
+                    class="waves-effect waves-green btn resa-btn"><?php trad('Terminate'); ?></button>
 
             <div class="row" id="div-add-stations">
                 <table id="table-add-station">

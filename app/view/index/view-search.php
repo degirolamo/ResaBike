@@ -18,7 +18,7 @@
     </td>
     <td>
         <form class="login-form col s12" method="POST">
-        <button class="waves-effect waves-light btn" name="reserv" type="submit" id="btn-booking"><?php trad('Booking'); ?></button>
+        <button class="waves-effect waves-light btn resa-btn" name="reserv" type="submit" id="btn-booking"><?php trad('Booking'); ?></button>
         </form>
     </td>
 </tr>

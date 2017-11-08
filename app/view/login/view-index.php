@@ -1,7 +1,7 @@
 <html>
 <div class="container">
 <head>
-    <link rel="stylesheet" type="text/css" href="/resabike/assets/css/login.css">
+    <link rel="stylesheet" type="text/css" href="/resabike/assets/css/perso.css">
     <!--Import Google Icon Font-->
     <link href="/resabike/assets/css/icon.css" rel="stylesheet">
     <!--Import materialize.css-->
@@ -13,7 +13,7 @@
 
 <body>
 <div class="form">
-        <h2 style="margin-bottom: 5%;">Welcome on the best project made by Kev and a little bit Dan</h2>
+        <h2 style="margin-bottom: 5%;"><?php trad('Login'); ?></h2>
         <form class="login-form col s6" method="POST">
             <div class="row smallRow">
                 <div class="input-field col s6">
@@ -32,7 +32,8 @@
                         </div>
                 </div>
             </div>
-            <button class="btn waves-effect waves-light" name="connect" type="submit"><?php trad('Connection'); ?></button>
+            <button class="btn waves-effect waves-light resa-btn" name="connect" type="submit"><?php trad('Connection'); ?></button>
+            <a href="/resabike/index" class="btn waves-effect waves-light resa-btn"><?php trad('Cancel'); ?></a>
         </form>
 </div>
 

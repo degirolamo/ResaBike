@@ -11,3 +11,28 @@ main {
 #table-add-station {
     table-layout: fixed;
 }
+
+.teal.lighten-2 {
+     background-color: #EFB631 !important;
+
+ }
+
+.teal.lighten-2 a {
+    color : black !important;
+
+
+}
+
+.resa-btn {
+    background-color: black !important;
+    color: #fff;
+}
+
+.blackIcon {
+    color: black;
+    margin-right: 5%;
+}
+
+.blackLinks {
+    color: black !important;
+}
