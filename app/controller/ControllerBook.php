@@ -27,6 +27,18 @@ class ControllerBook extends Controller
     {
         $this->model->deleteBook($_GET['id']);
         header("Location: /resabike/book");
+
     }
+
+    public function deleteByMail()
+    {
+        $this->model->deleteBook($_GET['id']);
+        header("Location: /resabike/index");
+
+    }
+
+
+
+
 
 }
