@@ -14,14 +14,15 @@ class Reservation
         $this->conn = DbConnect::Get('Connection');
     }
 
-    public function addReservation($idStartStation, $idEndStation, $email, $nbVelos, $dateDepart, $confirme)
+    public function addReservation($idStartStation, $idEndStation, $email, $phone, $nbVelos, $dateDepart, $confirme)
     {
         $conn = $this->conn;
-        $sql = "INSERT INTO reservation VALUES (NULL, :idStartStation, :idEndStation, :email, :nbVelos, :dateDepart,:confirme)";
+        $sql = "INSERT INTO reservation VALUES (NULL, :idStartStation, :idEndStation, :email, :phone, :nbVelos, :dateDepart,:confirme)";
         $stat = $conn->prepare($sql);
         $stat->bindParam(":idStartStation", $idStartStation);
         $stat->bindParam(":idEndStation", $idEndStation);
         $stat->bindParam(":email", $email);
+        $stat->bindParam(":phone", $phone);
         $stat->bindParam(":nbVelos", $nbVelos);
         $stat->bindParam(":dateDepart", $dateDepart);
         $stat->bindParam(":confirme", $confirme);

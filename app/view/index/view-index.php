@@ -11,6 +11,12 @@
                         <input id="idMail" required type="email" class="validate">
                     </div>
 
+                    <div class="input-field col s6">
+                        <label for="phone"><?php trad('Phone'); ?></label>
+                        <input id="idPhone" required type="text" class="validate">
+                    </div>
+
+
                     <div class="row smallRow">
                         <div class="col s12">
                             <div class="input-field col s6">
