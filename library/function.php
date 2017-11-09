@@ -1,14 +1,27 @@
 <?php
 use resabike\library\php\phpMailer;
+
+/**
+ * @return string
+ */
 function error_404(){
     return '404 ça marche pas';
 }
 
+/**
+ *
+ */
 function redirectIfNotConnected() {
     if(!isset($_SESSION['connected']))
         header('Location: '.DS.'resabike'.DS.'login');
 }
 
+/**
+ * @param $limitRole
+ * @param $canAccess
+ * @param $ctr
+ * @param string $action
+ */
 function redirectByRole($limitRole, $canAccess, $ctr, $action = 'index') {
     // If the user role is lower than the value in parameter, a redirection will be made
     if($_SESSION['user']['idRole'] < $limitRole) {
@@ -23,41 +36,50 @@ function redirectByRole($limitRole, $canAccess, $ctr, $action = 'index') {
     }
 }
 
+/**
+ * @param $key
+ * @param bool $return
+ * @return string
+ */
 function trad($key, $return = false)
 {
-    // Langue par défaut
+    // Language by default
     $currentlang = 'en';
-    // Si aucune langue n'est sélectionnée, on sélectionne la langue par défaut
+    // Select the language by default if no language are selected
     $currentlang = (isset($_SESSION['lang'])) ? strtolower($_SESSION['lang']) : $currentlang;
 
-    // Chemin vers le fichier de langues
+    // path to the json file
     $path = ASSETSPATH . DS . 'languages' . DS . $currentlang . '.json';
 
-    // Récupération du contenu du fichier
+    //get the content of the json file
     $a = file_get_contents($path);
     $lang = json_decode($a, true);
 
-    // Si le fichier n'existe pas ou que le mot clé n'est pas encore traduit
+    // If the words doesn't exist in the json file
     if(empty($lang) || !array_key_exists($key, $lang)) {
 
-        // Si la langue actuelle est anglais
+
         if($currentlang == 'en')
         {
-            // Création du mot clé avec la traduction
+            // Create the word in the json file
             $lang[$key] = $key;
-            // Ajout dans le fichier
             file_put_contents($path, json_encode($lang));
         }
         else
         {
-            // Affichage du mot en anglais entouré de crochets
+            // Set the word with brackets
             return returnOrEcho('[' . $key . ']', $return);
         }
     }
-    // Affichage de la traduction
+    // Set the translate
     return returnOrEcho($lang[$key], $return);
 }
 
+/**
+ * @param $value
+ * @param $isReturn
+ * @return string
+ */
 function returnOrEcho($value, $isReturn)
 {
     if($isReturn) {
@@ -69,6 +91,13 @@ function returnOrEcho($value, $isReturn)
     return '';
 }
 
+/**
+ * Function to send a mail
+ * @param $from
+ * @param $to
+ * @param $object
+ * @param $body
+ */
 function phpMailer($from, $to, $object, $body){
     $mail = new PHPMailer();
     $mail->IsSMTP();
@@ -93,8 +122,8 @@ function phpMailer($from, $to, $object, $body){
     $mail->Subject = 'Resabike: ' . utf8_decode($object);
     $mail->Body = $body;
 
-    if (!$mail->Send()) // Teste le return code de la fonction
-        echo $mail->ErrorInfo; // Affiche le message d\'erreur
+    if (!$mail->Send())
+        echo $mail->ErrorInfo;
     $mail->SmtpClose();
     unset($mail);
 }

@@ -6,6 +6,12 @@ use ResaBike\Library\Mvc\Model;
 use ResaBike\Library\Entity\Arret;
 
 class ModelIndex extends Model{
+
+    /**
+     * Get stations by name
+     * @param $name
+     * @return array
+     */
     public function getStations($name) {
         $arretManager = new Arret();
         $stations = $arretManager->getArretsByName($name);
@@ -18,6 +24,11 @@ class ModelIndex extends Model{
         return $tabStations;
     }
 
+    /**
+     * Get station by name
+     * @param $name
+     * @return mixed
+     */
     public function getStationByName($name) {
         $arretManager = new Arret();
         $stations = $arretManager->getAllArret();
@@ -29,12 +40,26 @@ class ModelIndex extends Model{
 
     }
 
-    public function addBook($idStartStation, $idEndStation, $email, $phone,  $nbVelos, $dateDepart) {
+    /**
+     * Add a book
+     * @param $idStartStation
+     * @param $idEndStation
+     * @param $email
+     * @param $phone
+     * @param $nbVelos
+     * @param $dateDepart
+     * @return string
+     */
+    public function addBook($idStartStation, $idEndStation, $email, $phone, $nbVelos, $dateDepart) {
         $reservationManager = new Reservation();
 
         return $reservationManager->addReservation($idStartStation, $idEndStation, $email,$phone, $nbVelos, $dateDepart);
     }
 
+    /**
+     * delete a book
+     * @param $id
+     */
     public function deleteBook($id) {
         $bookManager = new Reservation();
         return $bookManager->deleteReservation($id);

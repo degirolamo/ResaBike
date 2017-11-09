@@ -9,6 +9,13 @@ class Controller{
     protected $model;
     public $view;
 
+    /**
+     * Controller constructor.
+     * @param $currentController
+     * @param $currentAction
+     * @param $model
+     * @param $view
+     */
     public function __construct($currentController, $currentAction, $model, $view){
         $this->currentController = $currentController;
         $this->currentAction = $currentAction;

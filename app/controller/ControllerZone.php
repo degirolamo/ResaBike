@@ -7,7 +7,7 @@ use ResaBike\Library\Mvc\Controller;
 
 class ControllerZone extends Controller
 {
-
+//Call the function to get all zones by user
     public function index()
     {
         $UserConnected = $_SESSION['UserConnected'];
@@ -28,7 +28,7 @@ class ControllerZone extends Controller
         } else
             header("Location: /resabike/login");
     }
-
+//Call the function to add a zone
     public function add()
     {
         $UserConnected = $_SESSION['UserConnected'];
@@ -43,14 +43,14 @@ class ControllerZone extends Controller
         } else
             header("Location: /resabike/login");
     }
-
+//Call the function to delete a zone and the stations
     public function delete()
     {
         $this->model->deleteStations($_GET['id']);
         $this->model->deleteZone($_GET['id']);
         header("Location: /resabike/zone");
     }
-
+//Call the function to edit a zone
     public function edit()
     {
         if (isset($_POST['submitEdit'])) {
@@ -65,7 +65,7 @@ class ControllerZone extends Controller
 
         return $this->view->Render();
     }
-
+//Call the function to add a station per time
     public function addStation()
     {
         $name = $_GET['name'];
@@ -75,7 +75,7 @@ class ControllerZone extends Controller
             return 'Station ajoutée !';
         return 'Cette station existe déjà';
     }
-
+//Call the function to add all stations
     public function addAllStations()
     {
         $stations = explode(';', $_GET['stations']);

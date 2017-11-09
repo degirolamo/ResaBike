@@ -15,6 +15,10 @@ use Resabike\Library\Entity\Arret;
 
 class ModelZone
 {
+    /**
+     * get all zones
+     * @return array
+     */
     public function getAllZones()
     {
         $zoneManager = new Zone();
@@ -23,12 +27,17 @@ class ModelZone
         return $zones;
     }
 
+    /**
+     * get all zone by idzone
+     * @param $idZone
+     * @return array
+     */
     public function getAllGoodZones($idZone)
     {
         $zoneManager = new Zone();
         $zones = $zoneManager->getAllZone();
         $zoneGoodIdZone = [];
-// prendre que les zones avec le meme id que le user
+// Get zones with the good iduser
         foreach ($zones as $zone) {
             if ($zone['id'] == $idZone)
                 $zoneGoodIdZone[count($zoneGoodIdZone)] = $zone;
@@ -39,12 +48,20 @@ class ModelZone
         return $zoneGoodIdZone;
     }
 
+    /**
+     * delete a zone
+     * @param $id
+     */
     public function deleteZone($id)
     {
         $zoneManager = new Zone();
         return $zoneManager->deleteZone($id);
     }
 
+    /**
+     * delete all stations by idzone
+     * @param $id
+     */
     public function deleteStations($id)
     {
         $arretManager = new Arret();
@@ -56,12 +73,22 @@ class ModelZone
         }
     }
 
+    /**
+     * add a zone
+     * @param $nom
+     * @return string
+     */
     public function addZone($nom)
     {
         $zoneManager = new Zone();
         return $zoneManager->addZone($nom);
     }
 
+    /**
+     * edit a zone
+     * @param $id
+     * @return mixed
+     */
     public function editZone($id)
     {
         $zoneManager = new Zone();
@@ -71,6 +98,11 @@ class ModelZone
         return $zoneEdited;
     }
 
+    /**
+     * update a zone
+     * @param $id
+     * @param $nom
+     */
     public function updateZone($id, $nom)
     {
 
@@ -80,6 +112,12 @@ class ModelZone
 
     }
 
+    /**
+     * return true if the station is already in the zone
+     * @param $name
+     * @param $idZone
+     * @return bool
+     */
     public function existsStation($name, $idZone)
     {
         $arretManager = new Arret();
@@ -93,6 +131,12 @@ class ModelZone
         return false;
     }
 
+    /**
+     * add a station in a zone
+     * @param $name
+     * @param $idZone
+     * @return bool
+     */
     public function addStation($name, $idZone)
     {
         $arretManager = new Arret();

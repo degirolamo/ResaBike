@@ -6,6 +6,7 @@ use ResaBike\Library\Mvc\Controller;
 
 class ControllerBook extends Controller
 {
+//Call the action to get the list of books by user
 
     public function index()
     {
@@ -26,7 +27,7 @@ class ControllerBook extends Controller
         } else
             header("Location: /resabike/login");
     }
-
+//Call the action to delete a book by id
     public function delete()
     {
         $UserConnected = $_SESSION['UserConnected'];

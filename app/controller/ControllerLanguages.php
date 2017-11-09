@@ -11,6 +11,7 @@ namespace ResaBike\App\Controller;
 use ResaBike\Library\Mvc\Controller;
 
 class ControllerLanguages extends Controller
+//redirection and change the language in the session
 {
     public function index() {
         $_SESSION['lang'] = $_GET['lang'];

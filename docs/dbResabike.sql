@@ -44,7 +44,6 @@ CREATE TABLE reservation (
   idStationDep INT          NOT NULL,
   idStationFin INT          NOT NULL,
   email        VARCHAR(100) NOT NULL,
-  phone        VARCHAR(100) NOT NULL,
   nbVelos      INT          NOT NULL,
   dateDepart   DATETIME     NOT NULL,
   confirme     TINYINT      NOT NULL DEFAULT 0

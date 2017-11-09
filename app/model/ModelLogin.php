@@ -10,6 +10,11 @@ use Resabike\Library\Entity\Utilisateur;
 class ModelLogin extends Model
 {
 
+    /**
+     * Check if the username and de password are corrects
+     * @param $pseudo
+     * @return mixed
+     */
     public function checkLogin($pseudo) {
         $userManager = new Utilisateur();
 
@@ -24,6 +29,10 @@ class ModelLogin extends Model
 
     }
 
+    /**
+     * Get all users
+     * @return array
+     */
     public function getAllUsers() {
         $userManager = new Utilisateur();
         $users = $userManager->getAllUtilisateur();

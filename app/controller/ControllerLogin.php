@@ -6,6 +6,7 @@ use ResaBike\Library\Mvc\Controller;
 
 class ControllerLogin extends Controller
 {
+    //Call the action to get all user for checking if the function Login can work
     public function index()
     {
 
@@ -29,7 +30,7 @@ class ControllerLogin extends Controller
 
         return $this->view->RenderPartial();
     }
-
+//Destroy all what you have in session and set userconnected to null
     public function logout(){
 
         session_destroy();

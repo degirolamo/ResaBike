@@ -13,7 +13,7 @@ use ResaBike\Library\Mvc\Controller;
 
 class ControllerUsers extends Controller
 {
-
+//Call the function to get all users
     public function index() {
 
         $UserConnected = $_SESSION['UserConnected'];
@@ -27,7 +27,7 @@ class ControllerUsers extends Controller
         else
             header("Location: /resabike/login");
     }
-
+//Call the function to add a user
     public function add() {
 
 
@@ -54,12 +54,12 @@ class ControllerUsers extends Controller
         else
             header("Location: /resabike/login");
     }
-
+//Call the function to delete a user
     public function delete() {
         $this->model->deleteUser($_GET['id']);
         header("Location: /resabike/users");
     }
-
+//Call the function to edit a user
     public function edit(){
 
 

@@ -13,51 +13,66 @@ use Resabike\Library\Entity\Arret;
 use Resabike\Library\Entity\Reservation;
 
 class ModelBook
+
 {
-    public function getAllBooks() {
+    /**
+     * Get all books
+     * @return array
+     */
+    public function getAllBooks()
+    {
         $bookManager = new Reservation();
         $books = $bookManager->getAllReservation();
 
         return $books;
     }
 
-
-
-    public function deleteBook($id) {
+    /**
+     * Delete a book
+     * @param $id
+     */
+    public function deleteBook($id)
+    {
         $bookManager = new Reservation();
         return $bookManager->deleteReservation($id);
     }
 
-    public function getAllGoodBooks($idZone){
+    /**
+     * Get all books by idzone
+     * @param $idZone
+     * @return array
+     */
+    public function getAllGoodBooks($idZone)
+    {
 
-        // Liste de tous les arrets
+        // Get all stations
 
         $arretManager = new Arret();
         $arrets = $arretManager->getAllArret();
         $arretGoodIdZone = [];
 
-        // prendre que les arrêts de la même zone que l'utilisateur
+        // Get only the stations by idzone
 
-        foreach ($arrets as $arret){
+        foreach ($arrets as $arret) {
             if ($arret['idZone'] == $idZone)
                 $arretGoodIdZone[count($arretGoodIdZone)] = $arret;
 
         }
 
-        // prendre toutes les réservations
+        // Get all books
 
         $bookManager = new Reservation();
         $books = $bookManager->getAllReservation();
         $goodRerv = [];
 
-        // Prendre que les réservations qui contiennent des arrêt de la zone en paramètre
+        // get only the books by idstations
 
         foreach ($books as $book) {
 
-            foreach ($arretGoodIdZone as $arr){
+            foreach ($arretGoodIdZone as $arr) {
 
-                if($book['idStationDep'] == $arr['id']){
-                    $goodRerv[count($goodRerv)]  = $book;
+                if ($book['idStationDep'] == $arr['id']) {
+                    $goodRerv[count($goodRerv)] = $book;
                 }
             }
         }

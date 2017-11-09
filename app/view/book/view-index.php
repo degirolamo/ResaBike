@@ -6,7 +6,6 @@
 
             <th><?php trad('Date'); ?></th>
             <th><?php trad('Email'); ?></th>
-            <th><?php trad('Phone'); ?></th>
             <th><?php trad('Number of bikes'); ?></th>
             <th><?php trad('Actions'); ?></th>
         </tr>
@@ -42,7 +41,6 @@
             $html .= '<tr>
                 <td>'.strftime('%e %b %Y %H:%m', strtotime($book['dateDepart'])).'</td>
                 <td>'.$book['email'].'</td>
-                <td>'.$book['phone'].'</td>
                 <td>'.$book['nbVelos'].'</td>
                 <td>'.$actions.'</td>
             </tr>';

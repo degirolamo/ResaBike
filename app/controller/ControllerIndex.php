@@ -11,7 +11,7 @@ class ControllerIndex extends Controller
     public function index()
     {
 
-
+//Check if the user is connected to choose which layout set
         if (!isset($_SESSION['UserConnected'])) {
 
 
@@ -22,6 +22,7 @@ class ControllerIndex extends Controller
             header("Location: /resabike/book");
     }
 
+//Check if the user is connected to choose which layout set
 
     public function about()
     {
@@ -34,6 +35,7 @@ class ControllerIndex extends Controller
 
 
     }
+//Check if the user is connected to choose which layout set
 
     public function contact()
     {
@@ -46,44 +48,15 @@ class ControllerIndex extends Controller
         return $this->view->Render();
 
     }
-
+//Call the action to get a list of stations
     public function getStations()
     {
-//        return $this->model->getStations($_GET['input']);
         $arrets = $this->model->getStations($_GET['input']);
 
         return json_encode($arrets);
     }
 
-    public function search()
-    {
-        $date = $_SESSION['date'];
-        $from = $_SESSION['from'];
-        $to = $_SESSION['to'];
-        $this->view->Set('date', $date);
-        $this->view->Set('from', $from);
-        $this->view->Set('to', $to);
-
-        echo getcwd();
-
-
-        return $this->view->Render();
-    }
-
-    public function zones()
-    {
-
-        if (isset($_POST['zones'])) {
-
-            header('Location: /resabike/zone/showZonesSYSADMIN');
-        }
-
-
-        return $this->view->Render();
-
-    }
-
-
+    //Call the action to add a new book
     public function confirmReserv()
     {
         if (isset($_POST['submit'])) {
@@ -118,6 +91,7 @@ class ControllerIndex extends Controller
 
         return $this->view->RenderPartial();
     }
+    //Call the action to delete a book
 
     public function delete()
     {
@@ -125,6 +99,7 @@ class ControllerIndex extends Controller
         header("Location: /resabike/index");
 
     }
+    //Call the action to send a mail with the feedback
 
     public function feedback()
     {
