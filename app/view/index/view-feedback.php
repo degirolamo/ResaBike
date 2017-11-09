@@ -6,20 +6,20 @@
 
             <form class="login-form col s6" method="POST">
                 <div class="row smallRow">
-                    <div class="input-field col s6">
+                    <div class="input-field col s2">
                         <label for="pseudo"><?php trad('Username'); ?></label>
                         <input id="idPseudo" required type="text" class="validate" name="pseudo">
                     </div>
                 </div>
                 <div class="row smallRow">
-                    <div class="input-field col s6">
+                    <div class="input-field col s2">
                         <label for="mail"><?php trad('Email'); ?></label>
                         <input id="idMail" name="mail" required type="email" class="validate">
                     </div>
                 </div>
                 <div class="row">
                     <div class="row">
-                        <div class="input-field col s12">
+                        <div class="input-field col s6">
                             <textarea name="text" id="textarea1" class="materialize-textarea"></textarea>
                             <label for="textarea1"><?php trad('Text area'); ?></label>
                         </div>
@@ -31,7 +31,7 @@
                     <label for="filled-in-box"><?php trad('Receive a copy'); ?></label>
                 </p>
 
-                <button class="btn waves-effect waves-light resa-btn" id="btn-sendFeedback" name="sendFeedback" type="submit" >
+                <button style="margin-top: 2%" class="btn waves-effect waves-light resa-btn" id="btn-sendFeedback" name="sendFeedback" type="submit" >
                     <?php trad('Send'); ?>
 
                 </button>

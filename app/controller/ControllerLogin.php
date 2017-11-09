@@ -24,7 +24,7 @@ class ControllerLogin extends Controller
                 }
             }
 
-            echo '<h5 style="text-align: center;color: #bf360c">Mot de passe ou pseudo incorrect sale fdp </h5>';
+            echo '<h5 style="text-align: center; background-color:#bf360c; color: #FFFFFF">Mot de passe ou pseudo incorrect ! </h5>';
 
         }
 

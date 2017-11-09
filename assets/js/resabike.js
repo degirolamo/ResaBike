@@ -26,6 +26,7 @@ $(document).ready(function () {
         ampmclickable: true, // make AM PM clickable
     });
 
+
     $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month
         selectYears: 15, // Creates a dropdown of 15 years to control year,
@@ -51,6 +52,7 @@ $(document).ready(function () {
         getStopsFromApi(startStation, endStation);
     });
 
+    //get values to call the getHourFromAPI
     $('#btn-searchTime').click(function(){
         var from = $('#idfrom').val();
         var to = $('#idto').val();
@@ -60,15 +62,14 @@ $(document).ready(function () {
         var mail = $('#idMail').val();
         var phone = $('#idPhone').val();
         var nbBikes = $('#nbrvelo').val();
-        console.log(from,to);
-        console.log('dsadsa');
         getHourFromApi(from, to, newDate, time, mail, phone, nbBikes)
     });
 
 });
 
+// format the date for match with the API
+
 function myDateFormatter(dateToConvert) {
-    console.log(dateToConvert);
     var d = new Date(dateToConvert);
     var day = d.getDate();
     var month = d.getMonth() + 1;
@@ -83,6 +84,7 @@ function myDateFormatter(dateToConvert) {
     return date;
 };
 
+//Autocomplet from DB
 function getAutocompleteFromDB(input) {
     $.ajax({
         url: '/resabike/index/getStations',
@@ -97,7 +99,7 @@ function getAutocompleteFromDB(input) {
                 result[val.nom] = null;
             });
 
-            console.log(result);
+
 
             $('input.autocompleteDB').autocomplete({
                 data: result,
@@ -110,16 +112,16 @@ function getAutocompleteFromDB(input) {
 
 
 
-
+//Get hour from API
 function getHourFromApi(from, to, date, hour, mail, phone, nbBikes) {
-    console.log('cest le from pour la requete API qui recoit : '+from)
-    from = 'Sierre, poste/gare';
-    to = 'Vissoie, poste';
-    date = '11/23/2017';
-    hour = '14:30';
-    mail = 'kev.carneiro@gmail.com';
-    phone = '+41 79/580/236';
-    nbBikes = 2;
+
+  //  from = 'Sierre, poste/gare';
+   // to = 'Vissoie, poste';
+   // date = '11/23/2017';
+   // hour = '14:30';
+   // mail = 'kev.carneiro@gmail.com';
+   // phone = '+41 79/580/236';
+    // nbBikes = 2;
     $.ajax({
         url: "https://timetable.search.ch/api/route.en.json?from=" + from + "&to=" + to + "&date=" + date + "&time=" + hour,
         type: 'Get',
@@ -148,18 +150,15 @@ function getHourFromApi(from, to, date, hour, mail, phone, nbBikes) {
 
                 book.push(legDetails);
             }
-    console.log(book);
+
+
             fillTab(book, mail, nbBikes, phone);
         }
     })
 }
-
+// fill the tab of the reservations with all the reservations
 function fillTab(trips, mail, nbBikes, phone) {
     var result = "";
-    console.log(trips);
-    console.log(mail);
-    console.log(phone);
-    console.log(nbBikes);
 
     for(var i = 0 ; i <trips.length ; i++){
         result +=   '<tr>' +
@@ -174,7 +173,7 @@ function fillTab(trips, mail, nbBikes, phone) {
 
     $('[id^="btn-book-"]').click(function () {
         var id = this.id.substring(this.id.length -1, this.id.length);
-        console.log(id);
+
         html = '' +
             '<form id="formReserv" method="post" action="/resabike/index/confirmReserv">' +
             '<input type="text" name="from" value="' + trips[id].from + '">' +
@@ -193,7 +192,7 @@ function fillTab(trips, mail, nbBikes, phone) {
     })
 }
 
-
+// get stops from api
 function getStopsFromApi(startStation, endStation) {
     $.ajax({
         url: 'https://timetable.search.ch/api/route.en.json?from=' + startStation + '&to=' + endStation,
@@ -268,9 +267,9 @@ function getStopsFromApi(startStation, endStation) {
                         'zone': $(this).data('zone')
                     }
                 }).done(function (res) {
-                    console.log(res);
+
                     var messages = JSON.parse(res);
-                    console.log(messages);
+
                     for (var i = 0; i < messages.length; i++) {
                         var tdToChange = '#td-add-station-' + i;
                         $(tdToChange).html(messages[i]);
@@ -281,7 +280,7 @@ function getStopsFromApi(startStation, endStation) {
     })
 }
 
-// Méthode permettant de récupérer un paramètre dans l'URL
+// Get a parameter in a URL
 function getParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
@@ -312,7 +311,7 @@ function getAutocompleteFromApi(input, stations) {
                 limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
                 minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
             });
-            console.log(stations);
+
         }
     })
 

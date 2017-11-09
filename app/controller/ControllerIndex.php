@@ -112,12 +112,6 @@ class ControllerIndex extends Controller
             $mail = $_POST['mail'];
 
 
-            echo 'debut';
-            var_dump($pseudo);
-            var_dump($text);
-            var_dump($mail);
-            echo 'fin';
-
 
             phpMailer('bestproject69kevdan@gmail.com', 'bestproject69kevdan@gmail.com', 'Feedback by ' . $pseudo, 'Ci-dessous, un feedback reçu par un client :, <br/><br/> ' . $text . '<br/><br/> <br/><br/><br/> ResaBike <br/> System');
 
