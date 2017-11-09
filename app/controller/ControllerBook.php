@@ -11,22 +11,33 @@ class ControllerBook extends Controller
     {
         $UserConnected = $_SESSION['UserConnected'];
 
-        if ($_SESSION['UserConnected']['idRole'] == 3) {
+        if ($UserConnected != null) {
 
-            $books = $this->model->getAllBooks();
-        } else {
+            if ($_SESSION['UserConnected']['idRole'] == 3) {
 
-            $books = $this->model->getAllGoodBooks($UserConnected['idZone']);
-        }
-        $this->view->Set('books', $books);
-        return $this->view->Render();
+                $books = $this->model->getAllBooks();
+            } else {
 
+                $books = $this->model->getAllGoodBooks($UserConnected['idZone']);
+            }
+            $this->view->Set('books', $books);
+            return $this->view->Render();
+
+        } else
+            header("Location: /resabike/login");
     }
 
     public function delete()
     {
-        $this->model->deleteBook($_GET['id']);
-        header("Location: /resabike/index");
+        $UserConnected = $_SESSION['UserConnected'];
 
+        if ($UserConnected != null) {
+
+
+            $this->model->deleteBook($_GET['id']);
+            header("Location: /resabike/book");
+
+        } else
+            header("Location: /resabike/index");
     }
 }

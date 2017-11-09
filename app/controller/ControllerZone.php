@@ -12,26 +12,36 @@ class ControllerZone extends Controller
     {
         $UserConnected = $_SESSION['UserConnected'];
 
-        if ($_SESSION['UserConnected']['idRole'] == 3) {
-            $zones = $this->model->getAllZones();
+        if ($UserConnected != null) {
 
-        } else {
 
-            $zones = $this->model->getAllGoodZones($UserConnected['idZone']);
-        }
+            if ($_SESSION['UserConnected']['idRole'] == 3) {
+                $zones = $this->model->getAllZones();
 
-        $this->view->Set('zones', $zones);
-        return $this->view->Render();
+            } else {
 
+                $zones = $this->model->getAllGoodZones($UserConnected['idZone']);
+            }
+
+            $this->view->Set('zones', $zones);
+            return $this->view->Render();
+        } else
+            header("Location: /resabike/login");
     }
 
     public function add()
     {
+        $UserConnected = $_SESSION['UserConnected'];
+
+        if($UserConnected!=null){
+
         if (isset($_POST['submit'])) {
             $lastInsertId = $this->model->addZone($_POST['nom']);
             header('Location: /resabike/zone/edit?id=' . $lastInsertId);
         }
         return $this->view->Render();
+        } else
+            header("Location: /resabike/login");
     }
 
     public function delete()

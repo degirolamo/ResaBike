@@ -15,12 +15,26 @@ class ControllerUsers extends Controller
 {
 
     public function index() {
-        $users = $this->model->getAllUsers();
-        $this->view->Set('users', $users);
-        return $this->view->Render();
+
+        $UserConnected = $_SESSION['UserConnected'];
+
+        if($UserConnected!=null){
+
+            $users = $this->model->getAllUsers();
+            $this->view->Set('users', $users);
+            return $this->view->Render();
+        }
+        else
+            header("Location: /resabike/login");
     }
 
     public function add() {
+
+
+        $UserConnected = $_SESSION['UserConnected'];
+
+        if($UserConnected!=null){
+
         if(isset($_POST['submit'])) {
             if ($_POST['idRole'] == 3){
                 $this->model->addUser($_POST['idRole'], null, $_POST['pseudo'], "pass", $_POST['email']);
@@ -36,6 +50,9 @@ class ControllerUsers extends Controller
         $this->view->Set('zones',$zones);
 
         return $this->view->Render();
+        }
+        else
+            header("Location: /resabike/login");
     }
 
     public function delete() {
