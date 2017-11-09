@@ -14,7 +14,7 @@
         <tbody>
 
         <?php
-        var_dump($books);
+
         $html = "";
         foreach($books as $book) {
             $actions = '

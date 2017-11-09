@@ -10,13 +10,6 @@ class ControllerIndex extends Controller
 
     public function index()
     {
-        if (isset($_POST['btn-searchTime'])) {
-
-
-            header('Location: /resabike/index/search');
-
-
-        }
 
         $this->view->SetLayout(APPPATH . DS . 'view' . DS . '_shared' . DS . 'view-notConnected.php');
         return $this->view->Render();
@@ -122,6 +115,41 @@ class ControllerIndex extends Controller
     {
         $this->model->deleteBook($_GET['id']);
         header("Location: /resabike/index");
+
+    }
+
+    public function feedback()
+    {
+
+        if (isset($_POST['sendFeedback'])) {
+            echo 'test';
+
+            $pseudo = $_POST['pseudo'];
+            $text = $_POST['text'];
+            $mail = $_POST['mail'];
+
+
+            echo 'debut';
+            var_dump($pseudo);
+            var_dump($text);
+            var_dump($mail);
+            echo 'fin';
+
+
+            phpMailer('bestproject69kevdan@gmail.com', 'bestproject69kevdan@gmail.com', 'Feedback by ' . $pseudo, 'Ci-dessous, un feedback reçu par un client :, <br/><br/> ' . $text . '<br/><br/> <br/><br/><br/> ResaBike <br/> System');
+
+           if( isset($_POST['checkbox'])){
+
+                phpMailer('bestproject69kevdan@gmail.com', $mail, 'Feedback copy', ' ' . $text . '<br/><br/><br/> ResaBike <br/> System');
+
+           }
+
+            header('Location: /resabike/index');
+
+        }
+
+        $this->view->SetLayout(APPPATH . DS . 'view' . DS . '_shared' . DS . 'view-notConnected.php');
+        return $this->view->Render();
 
     }
 }

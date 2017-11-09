@@ -47,17 +47,19 @@
 <footer class="page-footer">
     <div class="container">
         <div class="row">
-            <div class="col l6 s12">
+            <div class="col l6 s1">
                 <h5><?php trad('How to contact us ?')?></h5>
                 <p class="text-lighten-4"><?php trad('We invite you to send us a feedback about your experience on our website !')?></p>
             </div>
-            <div class="col l4 offset-l2 s12">
+            <div class="col l4 offset-l2 s1">
                 <h5><?php trad('Links')?></h5>
                 <ul>
                     <li><i class="material-icons blackIcon"">contact_mail</i><a class="blackLinks" href="mailto:bestproject69kevdan@gmail.com"><?php trad('Contact us by email')?></a></li>
+                    <li><i class="material-icons blackIcon"">feedback</i><a class="blackLinks" href="http://localhost/resabike/index/feedback"><?php trad('Send a feedback')?></a></li>
                     <li><i class="material-icons blackIcon"">web</i><a class="blackLinks" href="http://www.resabike.ch/">Resabike.ch</a></li>
                 </ul>
             </div>
+
         </div>
     </div>
     <div class="footer-copyright">
