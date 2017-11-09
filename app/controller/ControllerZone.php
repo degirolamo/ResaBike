@@ -84,7 +84,8 @@ class ControllerZone extends Controller
         foreach ($stations as $station) {
             if ($this->model->addStation($station, $_GET['zone']))
                 array_push($messages, 'Station ajoutée !');
-            array_push($messages, 'Cette station existe déjà');;
+            else
+                array_push($messages, 'Cette station existe déjà');;
         }
 
         return json_encode($messages);

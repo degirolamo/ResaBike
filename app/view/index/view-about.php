@@ -14,10 +14,8 @@
     <body>
         <h1 class="titre"><?php trad('About us'); ?></h1>
         <div class="row smallRow">
-            <div class="col s12">
-                <p>RESABIKE est un projet visant à faciliter la vie des cyclistes voyageant en transports publics sur les lignes régionales. Nous parlons donc principalement des bus et autres cars postaux, et surtout dans les régions touristiques !
-                    L’idée étant qu’il est plus agréable pour tout le monde (exploitant, conducteur, voyageur…) de savoir combien de cyclistes souhaitent voyager avec leur monture.
-                    Cela permet de prévoir au mieux les éventuelles remorques à atteler, ou d’annoncer aux voyageurs que le porte-vélos est déjà bien rempli. </p>
+            <div class="col s6">
+                <p style="text-align: justify"><?php trad('TextAbout'); ?> </p>
             </div>
         </div>
     </body>
