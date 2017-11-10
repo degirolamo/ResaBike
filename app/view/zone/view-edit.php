@@ -24,7 +24,7 @@
                 <div class="input-field col s12">
                     <input id="input-endStation" type="text" class="validate autocomplete autocompleteApi">
 
-                    <label for="input-endStation"><?php trad('final station'); ?></label>
+                    <label for="input-endStation"><?php trad('Final station'); ?></label>
                 </div>
             </div>
 
